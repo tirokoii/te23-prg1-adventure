@@ -1,4 +1,5 @@
-from book import BOOK
+# from book import BOOK
+from robosquirrels import ROBOSQUIRRELS
 
 def input_int(prompt):
     while True:
@@ -24,7 +25,7 @@ def main():
     current_id = 1
     inventory = []
     while True and current_id is not None:
-        current_page = get_page(BOOK, current_id)
+        current_page = get_page(ROBOSQUIRRELS, current_id)
         show_page(current_page)
         if "loot" in current_page:
             print(f"You found {current_page['loot']}!")
