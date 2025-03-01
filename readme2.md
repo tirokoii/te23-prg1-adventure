@@ -197,7 +197,9 @@ Ja-ja, det börjar med den if-satsen som jag så snällt fått av jensadev. Den 
 
 Men jag har inte hunnit göra så att man inte kan välja de alternativ som kräver loot ännu, eller gjort så att loot:en försvinner "för evigt" om man försöker återvända till en sida senare med page_history funktionen.
 
-Jag såg nyss att man skulle skriva kort(Whoopsie)
+Jag såg nyss att man skulle skriva kort(Whoopsie) 
+
+Dessutom antar jag att bara hälften av detta stämmer...
 
 
 
