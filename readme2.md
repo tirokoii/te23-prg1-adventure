@@ -15,70 +15,70 @@ Abslout ingen aning (det funkar typ)
 ##### Och hur i hela friden har jag skrivit det?
 Så här:
 
-def menu(choice, pages):
+    def menu(choice, pages):
 
-    while True:
+        while True:
 
-        print("Quit: 1")
+            print("Quit: 1")
 
-        print("Restart: 2")
+            print("Restart: 2")
 
-        print("Continue: 3")
+            print("Continue: 3")
 
-        print("Pages: 4")
+            print("Pages: 4")
 
-        choice = input_int("Choose: ")
+            choice = input_int("Choose: ")
 
-        print("\n")
+            print("\n")
 
-        if choice == 1:
+            if choice == 1:
 
-            return False
+                return False
 
-        elif choice == 2:
+            elif choice == 2:
 
-            return "Restart"
+                return "Restart"
 
-        elif choice == 3:
+            elif choice == 3:
 
-            return "continue"
+                return "continue"
 
-        elif choice == 4:
+            elif choice == 4:
 
-            choice = page_history(pages)
+                choice = page_history(pages)
 
-            return choice
+                return choice
 
-        else:
+            else:
 
-            print("Please write a number between 1-4")
+                print("Please write a number between 1-4")
 
 
-def input_check(prompt, pages): #Menu choice
+    def input_check(prompt, pages): #Menu choice
 
-    while True:
+        while True:
 
-        choice = input(prompt)
+            choice = input(prompt)
 
-        if choice.lower() == "m":
+            if choice.lower() == "m":
 
-            game = menu(choice, pages)
+                game = menu(choice, pages)
 
-            return game
+                return game
 
-        elif choice.isalpha():
+            elif choice.isalpha():
 
-            print("Invalid input. Please write a number or m for menu")
+                print("Invalid input. Please write a number or m for menu")
 
-        elif choice.isdigit():
+            elif choice.isdigit():
 
-            choice = int(choice)
+                choice = int(choice)
 
-            return choice
+                return choice
 
-        else:
+            else:
 
-            print("Invalid input. Please write a number or m for menu")
+                print("Invalid input. Please write a number or m for menu")
 
 
 ##### Hur fungerar det?
@@ -97,51 +97,53 @@ Jahopp, men hur fungerar input checken då? Jo den inehåller också en while lo
 
 Precis så här:
 
-history_list = []
+    history_list = []
 
-if current_id not in history_list:
+    if current_id not in history_list:
 
-                history_list.append(current_id)
+                    history_list.append(current_id)
 
-                history_list.sort()
+                    history_list.sort()
 
-def page_history(pages):
+    def page_history(pages):
 
-    for page_number in pages:
+        for page_number in pages:
 
-        for page in ROBOSQUIRRELS:
+            for page in ROBOSQUIRRELS:
 
-            if page["id"] == page_number:
+                if page["id"] == page_number:
 
-                print(f"{page_number}. {page["title"]}")'
+                    print(f"{page_number}. {page["title"]}")'
 
-                break
+                    break
 
-    while True:
+        while True:
 
-        choice = input_int("Which page do you wish to jump to? ")
+            choice = input_int("Which page do you wish to jump to? ")
 
-        print("\n")
+            print("\n")
 
-        if choice in pages:
+            if choice in pages:
 
-            choice = [choice, "p"]
+                choice = [choice, "p"]
 
-            return choice 
+                return choice 
 
-        else:
+            else:
 
-            print("You haven't discovered that page yet")
+                print("You haven't discovered that page yet")
 
-if type(choice) == int:
+---
 
-                choice = choice
+    if type(choice) == int:
 
-            elif "p" in choice:
+                    choice = choice
 
-                current_id = choice[0]
+                elif "p" in choice:
 
-                choice = current_id
+                    current_id = choice[0]
+
+                    choice = current_id
 
 
 ##### Hur går det till?
@@ -164,21 +166,21 @@ Sedan i main funktionen finns det en if-sats som har villkoret om choice är en 
 ##### Hur ser det ut?
 Ungefär på detta viss:
 
-inventory = []
+    inventory = []
 
-if "loot" in current_page and "loot" not in inventory and len(current_page["loot"]) > 0:
+    if "loot" in current_page and "loot" not in inventory and len(current_page["loot"]) > 0:
 
-    while True:
+        while True:
 
-        print(f"You found {current_page['loot']}!")
+            print(f"You found {current_page['loot']}!")
 
-        loot_list = current_page["loot"]
+            loot_list = current_page["loot"]
 
-        for item in loot_list:  
+            for item in loot_list:  
 
-            inventory.append(item)
+                inventory.append(item)
 
-        break
+            break
 
 I robosquirrels dokumentet:
 
