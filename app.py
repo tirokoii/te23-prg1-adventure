@@ -15,7 +15,8 @@ def page_history(pages):
         choice = input_int("Which page do you wish to jump to? ")
         print("\n")
         if choice in pages:
-            return choice
+            choice = [choice, "p"]
+            return choice 
         else:
             print("You haven't discovered that page yet")
 
@@ -35,8 +36,8 @@ def menu(choice, pages):
         elif choice == 3:
             return "continue"
         elif choice == 4:
-            current_id = page_history(pages)
-            return current_id
+            choice = page_history(pages)
+            return choice
         else:
             print("Please write a number between 1-4")
         
@@ -74,7 +75,6 @@ def show_page(page): #Prints the page
     for i, option in enumerate(page["options"]):
         print(f"{i + 1}. {option['text']}")
 
-
 def main(): #Makes everything work
     game = True
     current_id = 1
@@ -86,36 +86,45 @@ def main(): #Makes everything work
         game = True
         while True:
             current_page = get_page(ROBOSQUIRRELS, current_id)
+
             show_page(current_page)
             if current_id not in history_list:
                 history_list.append(current_id)
                 history_list.sort()
 
-            if "loot" in current_page:
-                print(f"You found {current_page['loot']}!")
-                inventory.append(current_page["loot"])
-        
+            if "loot" in current_page and "loot" not in inventory and len(current_page["loot"]) > 0:
+                while True:
+                    print(f"You found {current_page['loot']}!")
+                    loot_list = current_page["loot"]
+                    for item in loot_list:  
+                        inventory.append(item)
+                    break
+
             choice = input_check("Enter your choice: ", history_list)
-            if choice in history_list:
-                current_id = choice
+
+            if type(choice) == int:
+                choice = choice
+            elif "p" in choice:
+                current_id = choice[0]
+                choice = current_id
+
+            if choice == False:
+                game = False
+            elif choice == "Restart":
+                game = "Restart"
+            elif choice == "continue":
+                game = True
+            elif 1 <= choice <= len(current_page["options"]):
+                if "item_required" in current_page["options"][choice - 1]:
+                    inventory.remove(current_page["options"][choice - 1]["item_required"])
+                if current_id > 50:
+                    print("Thank you for playing!")
+                    break
+                current_id = current_page["options"][choice - 1]["next_id"]
             else:
-                break
-
-        if choice == False:
-            game = False
-        elif choice == "Restart":
-            game = "Restart"
-        elif choice == "continue":
-            game = True
-        elif 1 <= choice <= len(current_page["options"]):
-            current_id = current_page["options"][choice - 1]["next_id"]
-            if current_id > 18:
-                print("Thank you for playing!")
-                break
-        else:
-            print("Invalid choice. Please try again.\n")
-            current_id = current_id
-
+                print("Invalid choice. Please try again.\n")
+                current_id = current_id
+    print("Thank you for playing!")
 
 if __name__ == "__main__":   
     main()
