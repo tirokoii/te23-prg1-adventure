@@ -184,7 +184,7 @@ Ungefär på detta viss:
 
 I robosquirrels dokumentet:
 
-"loot": ["Rebel Medkit", "Squirrel Credits", "Power Cell"],
+    "loot": ["Rebel Medkit", "Squirrel Credits", "Power Cell"],
 
 
 ##### Vad händer?
